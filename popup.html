@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Scroll</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="dark">
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <img src="icons/icon32.png" alt="" class="header-icon">
+        <span class="header-title">AUTO SCROLL</span>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hidden">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Status Bar -->
+    <div class="status-bar" id="statusBar">
+      <span class="status-dot" id="statusDot"></span>
+      <span class="status-text" id="statusText">READY</span>
+      <span class="status-time" id="statusTime"></span>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-container">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-labels">
+        <span class="mono" id="scrollPct">0%</span>
+        <span class="mono" id="scrollPos">0px</span>
+      </div>
+    </div>
+
+    <!-- Controls Grid -->
+    <div class="controls-grid">
+
+      <!-- Main Button -->
+      <div class="main-btn-row">
+        <button class="btn-main" id="btnToggle">
+          <svg id="btnIcon" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+          <span id="btnLabel">START</span>
+        </button>
+      </div>
+
+      <!-- Direction -->
+      <div class="cell-label">DIRECTION</div>
+      <div class="dir-row">
+        <button class="dir-btn active" id="btnDown" data-dir="down">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19,12 12,19 5,12"/>
+          </svg>
+          DOWN
+        </button>
+        <button class="dir-btn" id="btnUp" data-dir="up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5,12 12,5 19,12"/>
+          </svg>
+          UP
+        </button>
+      </div>
+
+      <!-- Speed -->
+      <div class="cell-label">SPEED <span class="mono" id="speedVal">3</span></div>
+      <div class="speed-row">
+        <span class="speed-label mono">SLOW</span>
+        <input type="range" id="speedSlider" min="1" max="10" value="3" class="slider">
+        <span class="speed-label mono">FAST</span>
+      </div>
+
+      <!-- Speed presets -->
+      <div class="preset-row">
+        <button class="preset-btn" data-speed="2">BROWSE</button>
+        <button class="preset-btn" data-speed="4">READ</button>
+        <button class="preset-btn active" data-speed="3">DEFAULT</button>
+        <button class="preset-btn" data-speed="8">SCAN</button>
+        <button class="preset-btn" data-speed="10">RUSH</button>
+      </div>
+
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-cell">
+        <span class="stat-label">SCROLLED</span>
+        <span class="stat-val mono" id="statScrolled">0px</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-cell">
+        <span class="stat-label">TIME</span>
+        <span class="stat-val mono" id="statTime">0s</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-cell">
+        <span class="stat-label">PAGE</span>
+        <span class="stat-val mono" id="statSite">—</span>
+      </div>
+    </div>
+
+    <!-- Info note -->
+    <div class="info-note" id="infoNote">
+      Press <kbd>Space</kbd> / arrow keys to stop
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
